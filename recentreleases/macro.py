@@ -81,7 +81,7 @@ class RecentReleasesMacro(WikiMacroBase):
             self.log.debug("DATA: %s" % releasedata)
 
         template = Chrome(self.env).load_template('recentreleases.html',method='xhtml')
-        data = Chrome(self.env).populate_data(req, {"fields":fields,"releasedata":releasedata})
+        data = Chrome(self.env).populate_data(req, {"context": formatter.context, "env": self.env, "fields":fields,"releasedata":releasedata})
         rendered_result = template.generate(**data)
         return rendered_result
 

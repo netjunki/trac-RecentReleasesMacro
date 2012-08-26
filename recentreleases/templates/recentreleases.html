@@ -2,13 +2,13 @@
 <table class="wiki">
 <tr>
 <py:for each="field in fields">
-  <th>${field}</th>
+  <th>${wiki_to_html(context,field)}</th>
 </py:for>
 </tr>
 <py:for each="release in sorted((releasedata.iterkeys()),reverse=True)">
 <tr>
   <py:for each="field in releasedata[release]">
-    <td>${field}</td>
+    <td>${wiki_to_html(context,field)}</td>
   </py:for>
 </tr>
 </py:for>
