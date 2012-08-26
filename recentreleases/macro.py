@@ -26,7 +26,7 @@ class RecentReleasesMacro(WikiMacroBase):
         wiki = formatter.wiki
         db = self.env.get_db_cnx()
         releasedata = {}
-        fields = ["version"]
+        fields = []
         first = True
         for page in wiki.get_pages(data["prefix"]):
             self.log.debug("PAGE: %s " % page)
@@ -44,7 +44,7 @@ class RecentReleasesMacro(WikiMacroBase):
                 if pagetag != data["tag"]:
                     continue
                 version = page.split("/")[-1]
-                releasedata[version] = [version]
+                releasedata[version] = []
             sql  = "SELECT text from wiki where name = '%s' order by version desc limit 1" % page
             cs = db.cursor()
             cs.execute(sql)
@@ -63,6 +63,23 @@ class RecentReleasesMacro(WikiMacroBase):
                         fields.append(parts[1])
             first = False
         self.log.debug("DATA: %s" % releasedata)
+        if data.has_key("subset"):
+            subset = data["subset"].split(" ")
+            self.log.debug("SUBSET: %s" % subset)
+            newfields = []
+            newreleasedata = {}
+            for x in subset:
+                x = int(x)-1
+                newfields.append(fields[x])
+                for release in releasedata:
+                    if not newreleasedata.has_key(release):
+                        newreleasedata[release] = []
+                    newreleasedata[release].append(releasedata[release][x])
+            fields = newfields
+            releasedata = newreleasedata
+            self.log.debug("FIELDS: %s" % fields)
+            self.log.debug("DATA: %s" % releasedata)
+
         template = Chrome(self.env).load_template('recentreleases.html',method='xhtml')
         data = Chrome(self.env).populate_data(req, {"fields":fields,"releasedata":releasedata})
         rendered_result = template.generate(**data)

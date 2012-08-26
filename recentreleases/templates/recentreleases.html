@@ -5,7 +5,7 @@
   <th>${field}</th>
 </py:for>
 </tr>
-<py:for each="release in releasedata">
+<py:for each="release in sorted((releasedata.iterkeys()),reverse=True)">
 <tr>
   <py:for each="field in releasedata[release]">
     <td>${field}</td>
