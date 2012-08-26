@@ -1,0 +1,16 @@
+<html xmlns:py="http://genshi.edgewall.org/" py:strip="">
+<table class="wiki">
+<tr>
+<py:for each="field in fields">
+  <th>${field}</th>
+</py:for>
+</tr>
+<py:for each="release in releasedata">
+<tr>
+  <py:for each="field in releasedata[release]">
+    <td>${field}</td>
+  </py:for>
+</tr>
+</py:for>
+</table>
+</html>
