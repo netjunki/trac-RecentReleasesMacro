@@ -4,9 +4,9 @@ trac-RecentReleasesMacro
 Fairly custom plugin that might not be useful for others since it assumes a particular page structure... but might be useful with modification.
 
 Usage:
-[[RecentReleases(server/releases,tag=upcoming)]] 
+[[RecentReleases(prefix=server/releases,tag=upcoming)]] 
 
-[[RecentReleases(server/releases,tag=upcoming,subset=2 1 3)]]
+[[RecentReleases(prefix=server/releases,tag=upcoming,subset=2 1 3)]]
 
 What does it do?
 
