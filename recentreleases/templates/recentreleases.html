@@ -5,7 +5,7 @@
   <th>${wiki_to_html(context,field)}</th>
 </py:for>
 </tr>
-<py:for each="release in sorted((releasedata.iterkeys()),reverse=True)[0:limit]">
+<py:for each="release in sorted((releasedata.iterkeys()),reverse=order)[0:limit]">
 <tr>
   <py:for each="field in releasedata[release]">
     <td>${wiki_to_html(context,field)}</td>

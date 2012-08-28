@@ -21,6 +21,16 @@ class RecentReleasesMacro(WikiMacroBase):
 
     def expand_macro(self, formatter, name, content, args):
         data = parse_args(content)[1]
+        if data.has_key("order"):
+            if data["order"] == "ascending":
+                order = False
+            elif data["order"] == "descending":
+                order = True
+            else:
+                order = True
+        else:
+            order = True
+        
         self.log.debug("EXPAND ARGUMENTS: %s " % data)
         req = formatter.req
         wiki = formatter.wiki
@@ -85,7 +95,7 @@ class RecentReleasesMacro(WikiMacroBase):
         else:
             limit = len(releasedata.keys())
         template = Chrome(self.env).load_template('recentreleases.html',method='xhtml')
-        data = Chrome(self.env).populate_data(req, {"context": formatter.context, "env": self.env, "fields":fields,"releasedata":releasedata,"limit":limit})
+        data = Chrome(self.env).populate_data(req, {"context": formatter.context, "env": self.env, "fields":fields,"releasedata":releasedata,"limit":limit, "order":order})
         rendered_result = template.generate(**data)
         return rendered_result
 

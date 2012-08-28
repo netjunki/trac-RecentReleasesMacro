@@ -10,6 +10,9 @@ Usage:
 
 [[RecentReleases(prefix=server/releases,tag=upcoming,subset=2 1 3,limit=3)]]
 
+[[RecentReleases(prefix=server/releases,tag=upcoming,order=descending)]] 
+
+
 What does it do?
 
 Similar to the TitleIndex this plugin takes a prefix as the first
@@ -34,6 +37,10 @@ There is another optional parameter limit which limits the number of
 releases shown. This is useful for embedding the list in pages where
 space is at a premium. And it's also useful to keep your tables from
 getting out of hand as the number of releases you have gets large.
+
+Another option parameter is order. This will change the sorting order
+of the versions. Past releases you want the newest one first... for
+upcoming releases you want the oldest one first.
 
 What do the ingested pages need to look like?
 

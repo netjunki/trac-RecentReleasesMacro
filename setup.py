@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name = 'TracRecentReleasesMacro',
-    version = '0.1',
+    version = '0.2',
     packages = ['recentreleases'],
     package_data={ 'recentreleases' : [ 'templates/*.html', 'htdocs/*.*' ] },
     author = "Benjamin Lau",
